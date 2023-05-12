@@ -1,0 +1,57 @@
+.wrapper {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-flex: 1;
+}
+
+.main {
+  max-width: 400px;
+  width: 100%;
+  margin: 0px auto;
+  animation: 0.2s ease 0s 1 normal forwards running fadeIn;
+}
+
+.logo {
+  display: table;
+  margin: 0px auto;
+}
+
+.form {
+  padding: 48px 44px;
+  border-radius: 20px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 10px 130px;
+  display: grid;
+  gap: 32px;
+  grid-template-columns: repeat(1, minmax(0px, 1fr));
+}
+
+.heading {
+  display: grid;
+  gap: 4px;
+  grid-template-columns: repeat(1, minmax(0px, 1fr));
+}
+
+.heading h1 {
+  font-weight: 400;
+}
+
+.heading p {
+  opacity: 0.5;
+}
+
+.mainWrapper {
+  display: grid;
+  gap: 60px;
+  grid-template-columns: repeat(1, minmax(0px px, 1fr));
+}
+
+.options {
+  display: grid;
+  gap: 4px;
+  grid-template-columns: repeat(1, minmax(0px, 1fr));
+}

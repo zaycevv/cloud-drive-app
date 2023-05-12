@@ -1,6 +1,9 @@
+import LoginForm from "@/components/auth/LoginForm";
+import styles from "@/styles/LoginPage.module.css";
+import { NextPage } from "next";
 import Head from "next/head";
 
-export default function SignIn() {
+const LoginPage: NextPage = () => {
   return (
     <>
       <Head>
@@ -9,6 +12,11 @@ export default function SignIn() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <div className={`${styles.wrapper}`}>
+        <LoginForm />
+      </div>
     </>
   );
-}
+};
+
+export default LoginPage;

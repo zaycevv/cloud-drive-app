@@ -1,0 +1,15 @@
+.header {
+  padding-top: 32px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  -webkit-box-pack: justify;
+  margin-bottom: 100px;
+}
+
+.header__avatar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
