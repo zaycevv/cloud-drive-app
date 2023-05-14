@@ -1,5 +1,5 @@
 import RegisterForm from "@/components/auth/RegisterForm";
-import styles from "@/styles/LoginPage.module.css";
+import styles from "@/styles/Auth.module.css";
 import { NextPage } from "next";
 import Head from "next/head";
 

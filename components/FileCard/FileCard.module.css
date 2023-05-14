@@ -1,0 +1,57 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 10px;
+  width: 150px;
+  height: 150px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.icon {
+  position: relative;
+  margin-bottom: 5px;
+}
+
+.icon i {
+  font-style: normal;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  text-transform: uppercase;
+  background-color: #777;
+  padding: 3px 6px;
+  border-radius: 6px;
+
+  &.red {
+    background-color: #de2013;
+  }
+
+  &.green {
+    background-color: #60c87d;
+  }
+
+  &.blue {
+    background-color: #4f78e0;
+  }
+
+  &.orange {
+    background-color: #ffa007;
+  }
+
+  &.purple {
+    background-color: #9966e7;
+  }
+}
+
+.image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 5px;
+}

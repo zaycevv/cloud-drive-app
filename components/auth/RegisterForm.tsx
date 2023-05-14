@@ -1,32 +1,60 @@
 import { TextInput, PasswordInput, Button, Group, Box } from "@mantine/core";
+import { notifications } from "@mantine/notifications";
+import { Check, ExclamationMark } from "tabler-icons-react";
 import { useForm, isEmail, hasLength } from "@mantine/form";
+import { setCookie } from "nookies";
 import Link from "next/link";
 import styles from "./Auth.module.css";
+import { RegisterFormDTO } from "@/api/dto/auth.dto";
+import * as Api from "@/api";
 
 const RegisterForm: React.FC = () => {
-  interface FormData {
-    name: string;
-    email: string;
-    password: string;
-  }
+  const onSubmit = async (values: RegisterFormDTO) => {
+    try {
+      const { token } = await Api.auth.register(values);
 
-  const onSubmit = (values: FormData) => {
-    console.log(values);
+      notifications.show({
+        withCloseButton: false,
+        icon: <Check size="1rem" />,
+        title: "Success!",
+        message: "Redirect to dashboard!",
+        radius: "md",
+      });
+
+      setCookie(null, "_token", token, {
+        path: "/",
+      });
+
+      location.href = "/dashboard";
+    } catch (err) {
+      console.warn(err);
+      notifications.show({
+        withCloseButton: false,
+        icon: <ExclamationMark size="1rem" />,
+        title: "Error!",
+        message: "Registration error",
+        radius: "md",
+        color: "red",
+      });
+    }
   };
 
   const form = useForm({
     initialValues: {
-      name: "",
+      fullName: "",
       email: "",
       password: "",
     },
 
     validate: {
-      name: hasLength({ min: 2, max: 10 }, "Name must be 2-10 characters long"),
+      fullName: hasLength(
+        { min: 2, max: 10 },
+        "Name must be 2-10 characters long"
+      ),
       email: isEmail("Invalid email"),
       password: hasLength(
-        { min: 2, max: 10 },
-        "Password must be 2-10 characters long"
+        { min: 8, max: 20 },
+        "Password must be 8-20 characters long"
       ),
     },
   });
@@ -76,7 +104,7 @@ const RegisterForm: React.FC = () => {
                 withAsterisk
                 placeholder="Name"
                 size="md"
-                {...form.getInputProps("name")}
+                {...form.getInputProps("fullName")}
               />
 
               <TextInput

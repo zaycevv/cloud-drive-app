@@ -1,6 +1,12 @@
 import { AppProps } from "next/app";
-import Head from "next/head";
-import { Global, MantineProvider } from "@mantine/core";
+import {
+  ColorScheme,
+  ColorSchemeProvider,
+  Global,
+  MantineProvider,
+} from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
+import React from "react";
 
 const MyGlobalStyles = () => {
   return (
@@ -12,43 +18,68 @@ const MyGlobalStyles = () => {
           padding: 0,
         },
         body: {
-          backgroundColor: "#ECF0F2",
           color: "#19191B",
+          backgroundColor: "#ECF0F2",
           fontSize: "16px",
         },
         a: {
           textDecoration: "none",
           color: "#33A5FD",
         },
+        ".file": {
+          marginRight: "15px",
+          marginBottom: "15px",
+          border: "2px solid transparent",
+          borderRadius: "10px",
+        },
+        ".file.active": {
+          backgroundColor: "rgb(0 113 206 / 5%)",
+          border: "2px solid #0073CC",
+        },
       })}
     />
   );
 };
 
-export default function App(props: AppProps) {
-  const { Component, pageProps } = props;
+interface Props extends AppProps {
+  Component: AppProps["Component"] & {
+    getLayout: (page: React.ReactElement) => React.ReactNode;
+  };
+}
 
-  return (
-    <>
-      <Head>
-        <title>Page title</title>
-        <meta
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width"
-        />
-      </Head>
+export default function App({ Component, pageProps }: Props) {
+  const getLayout = Component.getLayout || ((page: React.ReactNode) => page);
 
-      <MantineProvider
-        withGlobalStyles
-        withNormalizeCSS
-        theme={{
-          /** Put your mantine theme override here */
-          colorScheme: "light",
-        }}
-      >
-        <MyGlobalStyles />
-        <Component {...pageProps} />
-      </MantineProvider>
-    </>
+  const [colorScheme, setColorScheme] = React.useState<ColorScheme>("light");
+  const toggleColorScheme = (value?: ColorScheme) =>
+    setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
+
+  return getLayout(
+    <MantineProvider
+      withGlobalStyles
+      withNormalizeCSS
+      theme={{
+        fontFamily: "Oxygen, sans-serif",
+        colorScheme: "light",
+        colors: {
+          primary: [
+            "#CCEEFF",
+            "#7FC6FD",
+            "#33A5FD",
+            "#008FFD",
+            "#7FC6FD",
+            "#33A5FD",
+            "#008FFD",
+            "#0073CC",
+          ],
+          secondary: ["#ECF0F2"],
+        },
+        primaryColor: "primary",
+      }}
+    >
+      <Notifications />
+      <MyGlobalStyles />
+      <Component {...pageProps} />
+    </MantineProvider>
   );
 }

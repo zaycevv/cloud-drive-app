@@ -1,16 +1,43 @@
 import { TextInput, PasswordInput, Button, Group, Box } from "@mantine/core";
+import { notifications } from "@mantine/notifications";
+import { Check, ExclamationMark } from "tabler-icons-react";
 import { useForm, isEmail, hasLength } from "@mantine/form";
+import { setCookie } from "nookies";
 import Link from "next/link";
 import styles from "./Auth.module.css";
+import { LoginFormDTO } from "@/api/dto/auth.dto";
+import * as Api from "@/api";
 
 const LoginForm: React.FC = () => {
-  interface FormData {
-    email: string;
-    password: string;
-  }
+  const onSubmit = async (values: LoginFormDTO) => {
+    try {
+      const { token } = await Api.auth.login(values);
 
-  const onSubmit = (values: FormData) => {
-    console.log(values);
+      notifications.show({
+        withCloseButton: false,
+        icon: <Check size="1rem" />,
+        title: "Success!",
+        message: "Redirect to dashboard!",
+        radius: "md",
+      });
+
+      setCookie(null, "_token", token, {
+        path: "/",
+      });
+
+      location.href = "/dashboard";
+    } catch (err) {
+      console.warn("LoginForm", err);
+
+      notifications.show({
+        withCloseButton: false,
+        icon: <ExclamationMark size="1rem" />,
+        title: "Error!",
+        message: "Wrong password or email",
+        radius: "md",
+        color: "red",
+      });
+    }
   };
 
   const form = useForm({
@@ -22,8 +49,8 @@ const LoginForm: React.FC = () => {
     validate: {
       email: isEmail("Invalid email"),
       password: hasLength(
-        { min: 2, max: 10 },
-        "Password must be 2-10 characters long"
+        { min: 3, max: 20 },
+        "Password must be 3-20 characters long"
       ),
     },
   });

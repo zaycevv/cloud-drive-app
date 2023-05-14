@@ -1,21 +1,16 @@
-.main {
-  width: 1200px;
-  margin: 40px auto;
-}
-
 .sidebar {
   display: flex;
   flex-direction: column;
   background-color: white;
   border-radius: 18px 0px 0px 18px;
-  width: 250px;
+  width: 100%;
   padding: 20px;
 }
 
 .container {
-  background-color: #ffff;
-  opacity: 0.2;
+  background-color: rgba(255, 255, 255, 0.4);
   border-radius: 0px 18px 18px 0px;
+  min-height: 700px;
 }
 
 .layout {
@@ -36,7 +31,7 @@
   height: 100%;
 }
 
-.dashboardContainer {
+.dashboard {
   display: grid;
   grid-template-columns: 0.3fr 1fr;
 }
