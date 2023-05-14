@@ -8,7 +8,7 @@ import { isTemplateExpression } from "typescript";
 interface FileActionsProps {
   onClickRemove: VoidFunction;
   isActive: boolean;
-  getSelectedFiles: FileItem[] | [];
+  getSelectedFiles: () => FileItem[];
 }
 
 const FileActions: React.FC<FileActionsProps> = ({

@@ -3,6 +3,7 @@ import styles from "./FileCard.module.css";
 import { isImage } from "@/utils/isImage";
 import { getExtensionFromFileName } from "@/utils/getExtensionFromFileName";
 import { getColorByExtension } from "@/utils/getColorByExtension";
+import Image from "next/image";
 
 interface FileCardProps {
   filename: string;
@@ -22,7 +23,7 @@ const FileCard: React.FC<FileCardProps> = ({ filename, originalName }) => {
       <div className={styles.icon}>
         <i className={classColor}>{ext}</i>
         {isImage(ext) ? (
-          <img className={styles.image} src={imageUrl} alt="File" />
+          <Image className={styles.image} src={imageUrl} alt="File" />
         ) : (
           <File size="80px" color="#B0B5BA" strokeWidth={1.5} />
         )}
