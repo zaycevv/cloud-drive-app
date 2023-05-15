@@ -20,7 +20,11 @@ const FileList: React.FC<FileListProps> = ({ items, onFileSelect }) => {
       ))}
 
       <Selecto
-        container=".files"
+        container={
+          typeof window !== "undefined"
+            ? (window.document.querySelector(".files") as HTMLElement)
+            : null
+        }
         selectableTargets={[".file"]}
         selectByClick
         hitRate={10}

@@ -1,10 +1,5 @@
 import { AppProps } from "next/app";
-import {
-  ColorScheme,
-  ColorSchemeProvider,
-  Global,
-  MantineProvider,
-} from "@mantine/core";
+import { Global, MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import React from "react";
 
@@ -47,13 +42,8 @@ interface Props extends AppProps {
   };
 }
 
-export default function App({ Component, pageProps }: Props) {
+export default function App({ Component, pageProps }: AppProps) {
   const getLayout = Component.getLayout || ((page: React.ReactNode) => page);
-
-  const [colorScheme, setColorScheme] = React.useState<ColorScheme>("light");
-  const toggleColorScheme = (value?: ColorScheme) =>
-    setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
-
   return getLayout(
     <MantineProvider
       withGlobalStyles

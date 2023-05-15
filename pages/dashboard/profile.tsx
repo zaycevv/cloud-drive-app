@@ -10,7 +10,11 @@ interface Props {
   userData: User;
 }
 
-const DashboardProfilePage: NextPage<Props> = ({ userData }) => {
+type Page<P = {}> = NextPage<P> & {
+  getLayout?: (page: React.ReactElement) => React.ReactNode;
+};
+
+const DashboardProfilePage: Page<Props> = ({ userData }) => {
   return (
     <>
       <Header isDashboard />

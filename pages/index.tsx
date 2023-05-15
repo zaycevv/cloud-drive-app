@@ -139,15 +139,9 @@ export default function MainPage() {
   const router = useRouter();
   const { classes } = useStyles();
   const features = mockdata.map((feature) => (
-    <Card
-      key={feature.title}
-      shadow="md"
-      radius="md"
-      className={classes.card}
-      padding="xl"
-    >
+    <Card key={feature.title} shadow="md" radius="md" padding="xl">
       <feature.icon size="2rem" color="#008FFD" />
-      <Text fz="lg" fw={500} className={classes.cardTitle} mt="md">
+      <Text fz="lg" fw={500} mt="md">
         {feature.title}
       </Text>
       <Text fz="sm" c="dimmed" mt="sm">

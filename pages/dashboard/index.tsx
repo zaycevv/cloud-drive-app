@@ -3,16 +3,18 @@ import { checkAuth } from "@/utils/checkAuth";
 import { Layout } from "@/layouts/Layout";
 import * as Api from "@/api";
 import { FileItem } from "@/api/dto/files.dto";
-import FileList from "@/components/FileList";
 import { DashboardLayout } from "@/layouts/DashboardLayout";
-import DashboardContainer from "@/components/Dashboard";
 import Files from "@/modules/Files";
 
 interface Props {
   items: FileItem[];
 }
 
-const DashboardPage: NextPage<Props> = ({ items }) => {
+type Page<P = {}> = NextPage<P> & {
+  getLayout?: (page: React.ReactElement) => React.ReactNode;
+};
+
+const DashboardPage: Page<Props> = ({ items }) => {
   return (
     <DashboardLayout>
       <Files items={items} withActions />

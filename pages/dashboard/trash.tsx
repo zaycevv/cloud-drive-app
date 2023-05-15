@@ -11,7 +11,11 @@ interface Props {
   items: FileItem[];
 }
 
-const DashboardTrash: NextPage<Props> = ({ items }) => {
+type Page<P = {}> = NextPage<P> & {
+  getLayout?: (page: React.ReactElement) => React.ReactNode;
+};
+
+const DashboardTrash: Page<Props> = ({ items }) => {
   return (
     <DashboardLayout>
       <Files items={items} />
