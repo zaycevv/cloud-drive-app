@@ -15,6 +15,7 @@ import {
   rem,
 } from "@mantine/core";
 import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import {
   ArrowNarrowRight,
@@ -186,7 +187,7 @@ export default function MainPage() {
 
             <Button
               component="a"
-              href="https://github.com/hecudev/cloud-drive-app"
+              href="https://github.com/0xzay/cloud-drive-app"
               size="xl"
               radius="xl"
               variant="default"
@@ -247,9 +248,11 @@ export default function MainPage() {
               position="right"
               noWrap
             >
-              <ActionIcon size="lg" radius="xl">
-                <BrandGithub size="1.05rem" color="#008FFD" />
-              </ActionIcon>
+              <Link href="https://github.com/0xzay/cloud-drive-app">
+                <ActionIcon size="lg" radius="xl">
+                  <BrandGithub size="1.05rem" color="#008FFD" />
+                </ActionIcon>
+              </Link>
             </Group>
           </Container>
         </div>
