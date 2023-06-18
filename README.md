@@ -1,5 +1,7 @@
 # 📁 Cloud Drive
 
+![image](https://github.com/zaycevv/cloud-drive-app/assets/127613678/489fb26d-cbdd-424a-96e7-8dc3d7f54aaa)
+
 In this project, I used Next.js for server-side rendering and Mantine UI for styles. I also developed the backend of the application. I used an interesting library "react-selecto" to interact with the files.
 
 ### ⚙️ Technologies
